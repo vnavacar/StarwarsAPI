@@ -1,0 +1,48 @@
+
+/*
+body {
+    width:960px;
+    background: white; 
+    margin: auto;
+}
+title {
+    float : left;
+    text-align: left;
+    display: inline;
+    
+    
+}
+ul {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+*/
+
+body {
+  min-height: 100vh;
+  background-color: #333;
+  color: white;
+  font-family: Arial;
+  text-align: center;
+  padding: 20px;
+  background: black;
+}
+header,
+main,
+footer {
+  width: 80vw;
+  padding: 1rem 1rem;
+  margin: 0 auto;
+}
+header h1 {
+  color: orange;
+}
+header h2 {
+  color: orangered;
+}
+#nav,
+#footer {
+  display: flex;
+  flex-direction: row;
+}

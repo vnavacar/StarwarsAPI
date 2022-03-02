@@ -49,7 +49,7 @@ async function clear(){ //funciona
     
     
     document.getElementById("list").innerHTML = "";
-    
+    document.getElementById("nombrepelicula").innerHTML="Consulta:";
 
     
 }
@@ -66,18 +66,20 @@ async function obtenerPelicula(URL){
     clear();
     console.log(Pelicula);
     console.log("intentando escribir pelicula");
-    listContainer = document.createElement('div');
-    listElement = document.createElement('ul');
-    document.getElementById('list').appendChild(listContainer);
-    listContainer.appendChild(listElement);
+    objetivo = document.getElementById('nombrepelicula');
+    texto = document.createTextNode(" "+Pelicula.title);
+
+    objetivo.appendChild(texto);
+
     
-    listItem = document.createElement('li');
-    listItem.innerHTML = "Titulo:"+Pelicula.title;
-    listElement.appendChild(listItem);
+    
+    document.getElementById('list').appendChild(listContainer);// test
+
     
     listItem = document.createElement('li');
     listItem.innerHTML = Pelicula.opening_crawl;
     listElement.appendChild(listItem);
+    
     
     listItem = document.createElement('li');
     listItem.innerHTML = "Personajes:";

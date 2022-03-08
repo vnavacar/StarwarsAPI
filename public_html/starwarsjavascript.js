@@ -28,6 +28,7 @@ async function obtenerPeliculas(){
          document.getElementById('list').appendChild(listContainer);
          listContainer.appendChild(listElement);
           
+          
     for (let i = 0; i < Peliculas.results.length; i++) {
         
         listItem = document.createElement('li');

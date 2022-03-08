@@ -44,6 +44,7 @@ async function obtenerPeliculas(){
         listElement.appendChild(listItem);
         
     }
+         listElement = '';
          console.log("Escritura completa?");
          
 }
@@ -89,10 +90,11 @@ async function obtenerPelicula(URL){
     
     objetivo.appendChild(texto);
 
-
-    
+    listContainer = document.createElement('div');
+    listElement = document.createElement('ul');
     document.getElementById('list').appendChild(listContainer);// test
-
+    //document.getElementById('list').appendChild(listContainer);
+    listContainer.appendChild(listElement);
     
     listItem = document.createElement('li');
     listItem.innerHTML = Pelicula.opening_crawl;

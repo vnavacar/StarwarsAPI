@@ -27,6 +27,8 @@ async function obtenerPeliculas(){
          listElement = document.createElement('ul');
          document.getElementById('list').appendChild(listContainer);
          listContainer.appendChild(listElement);
+         //listElement = document.createElement('ul');
+         //document.getElementById('list').appendChild(listElement);
           
           
     for (let i = 0; i < Peliculas.results.length; i++) {
@@ -46,12 +48,24 @@ async function obtenerPeliculas(){
          
 }
 
-async function clear(){ //funciona
-    
-    
-    document.getElementById("list").innerHTML = "";
-    document.getElementById("nombrepelicula").innerHTML="Consulta:";
+function removeAllChildNodes(parent) { // experimentando
+    console.log("Probando removechild");
 
+    while (parent.firstChild) {
+        parent.removeChild(parent.firstChild);
+    }
+}
+
+async function clear(){ //funciona?
+    
+    console.log("Limpiando lista");
+    //document.getElementById("list").innerHTML = "";
+    document.getElementById("nombrepelicula").innerHTML="Consulta:";
+    //document.getElementById('list').removeChild();
+    const parent = document.getElementById("list");
+    //removeAllChildNodes(document.querySelector('#list'));
+    removeAllChildNodes(parent);
+    //document.getElementById("list").innerHTML = "";
     
 }
 
@@ -62,17 +76,20 @@ async function clear(){ //funciona
 async function obtenerPelicula(URL){
     
      //var URL = "films/"+numero ;
+    clear();
     
     const Pelicula = await obtenerDatosSWAPI(URL);
-    clear();
+    //clear();
     console.log(Pelicula);
     console.log("intentando escribir pelicula");
     objetivo = document.getElementById('nombrepelicula');
     texto = document.createTextNode(" "+Pelicula.title);
-
+    
+    //clear();
+    
     objetivo.appendChild(texto);
 
-    
+
     
     document.getElementById('list').appendChild(listContainer);// test
 

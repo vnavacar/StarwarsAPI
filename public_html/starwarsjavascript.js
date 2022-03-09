@@ -95,10 +95,13 @@ async function obtenerPelicula(URL){
     document.getElementById('list').appendChild(listContainer);// test
     //document.getElementById('list').appendChild(listContainer);
     listContainer.appendChild(listElement);
-    
+    /*
     listItem = document.createElement('li');
     listItem.innerHTML = Pelicula.opening_crawl;
     listElement.appendChild(listItem);
+    */
+    //experimentando
+    document.getElementById('textcrawl').innerHTML = Pelicula.opening_crawl; // funciona
     
     
     listItem = document.createElement('li');
@@ -486,4 +489,4 @@ function obtenerDatosSWAPI(url){
     return fetch(url)
             .then (r => r.json());
      
-};
+}

@@ -87,18 +87,11 @@ async function obtenerPelicula(URL){
     texto = document.createTextNode(" "+Pelicula.title);
     objetivo.appendChild(texto);
 
-    //listContainer = document.createElement('div');
     listContainer = document.getElementById('list');
     listElement = document.createElement('ul');
-    //document.getElementById('list').appendChild(listContainer);// test
     listContainer.appendChild(listElement);
 
-    /*
-    listItem = document.createElement('li');
-    listItem.innerHTML = Pelicula.opening_crawl;
-    listElement.appendChild(listItem);
-    */
-    //experimentando
+
     document.getElementById('textcrawl').innerHTML = Pelicula.opening_crawl; // funciona
     
     
@@ -123,6 +116,9 @@ async function obtenerPelicula(URL){
         listElement.appendChild(listItem);
     } // lista de personages
     
+    listElement = document.createElement('ul');
+    listContainer.appendChild(listElement);
+    
     listItem = document.createElement('li');
     listItem.innerHTML = "Planetas:";
     listItem.style.color = "orange";
@@ -142,6 +138,9 @@ async function obtenerPelicula(URL){
     
         listElement.appendChild(listItem);
     } // lista de planetas
+    
+    listElement = document.createElement('ul');
+    listContainer.appendChild(listElement);
     
     listItem = document.createElement('li');
     listItem.innerHTML = "Naves:";
@@ -163,6 +162,9 @@ async function obtenerPelicula(URL){
         listElement.appendChild(listItem);
     } // lista de naves
     
+    listElement = document.createElement('ul');
+    listContainer.appendChild(listElement);
+    
     listItem = document.createElement('li');
     listItem.innerHTML = "Vehiculos:";
     listItem.style.color = "orange";
@@ -182,6 +184,9 @@ async function obtenerPelicula(URL){
     
         listElement.appendChild(listItem);
     } // lista de vehiculos
+    
+    listElement = document.createElement('ul');
+    listContainer.appendChild(listElement);
     
     listItem = document.createElement('li');
     listItem.innerHTML = "Especies:";
@@ -261,6 +266,9 @@ async function obtenerPersonaje(URL){
         listElement.appendChild(listItem);
     } // lista de peliculas
     
+    listElement = document.createElement('ul');
+    listContainer.appendChild(listElement);
+    
     listItem = document.createElement('li');
     listItem.innerHTML = "vehiculos:";
     listItem.style.color = "orange";
@@ -280,6 +288,9 @@ async function obtenerPersonaje(URL){
     
         listElement.appendChild(listItem);
     } // lista de vehiculos
+    
+    listElement = document.createElement('ul');
+    listContainer.appendChild(listElement);
     
     listItem = document.createElement('li');
     listItem.innerHTML = "Naves:";
@@ -331,6 +342,9 @@ async function obtenerNave(URL){
     listItem = document.createElement('li');
     listItem.innerHTML = "Fabricante:"+Pelicula.manufacturer;
     listElement.appendChild(listItem);
+    
+    listElement = document.createElement('ul');
+    listContainer.appendChild(listElement);
         
     listItem = document.createElement('li');
     listItem.innerHTML = "Peliculas:";
@@ -384,6 +398,9 @@ async function obtenerVehiculo(URL){
     listItem = document.createElement('li');
     listItem.innerHTML = "Fabricante:"+Pelicula.manufacturer;
     listElement.appendChild(listItem);
+    
+    listElement = document.createElement('ul');
+    listContainer.appendChild(listElement);
         
     listItem = document.createElement('li');
     listItem.innerHTML = "Peliculas:";
@@ -437,6 +454,9 @@ async function obtenerPlaneta(URL){
     listItem = document.createElement('li');
     listItem.innerHTML = "Terreno:"+Pelicula.terrain;
     listElement.appendChild(listItem);
+    
+    listElement = document.createElement('ul');
+    listContainer.appendChild(listElement);
         
     listItem = document.createElement('li');
     listItem.innerHTML = "Peliculas:";
@@ -457,6 +477,9 @@ async function obtenerPlaneta(URL){
     
         listElement.appendChild(listItem);
     } // lista de peliculas
+    
+    listElement = document.createElement('ul');
+    listContainer.appendChild(listElement);
     
     istItem = document.createElement('li');
     listItem.innerHTML = "Personajes:";
@@ -508,6 +531,8 @@ async function obtenerEspecie(URL){
     listItem.innerHTML = "Designacion:"+Pelicula.designation;
     listElement.appendChild(listItem);
     
+    listElement = document.createElement('ul');
+    listContainer.appendChild(listElement);
         
     listItem = document.createElement('li');
     listItem.innerHTML = "Peliculas:";
@@ -528,6 +553,9 @@ async function obtenerEspecie(URL){
     
         listElement.appendChild(listItem);
     } // lista de peliculas
+    
+    listElement = document.createElement('ul');
+    listContainer.appendChild(listElement);
     
     istItem = document.createElement('li');
     listItem.innerHTML = "Personajes:";

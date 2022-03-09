@@ -23,9 +23,8 @@ async function obtenerPeliculas(){
          console.log("intentando escribir");
          console.log(Peliculas);
 
-         listContainer = document.createElement('div');
+         listContainer = document.getElementById('list');
          listElement = document.createElement('ul');
-         document.getElementById('list').appendChild(listContainer);
          listContainer.appendChild(listElement);
          //listElement = document.createElement('ul');
          //document.getElementById('list').appendChild(listElement);
@@ -62,6 +61,8 @@ async function clear(){ //funciona?
     console.log("Limpiando lista");
     //document.getElementById("list").innerHTML = "";
     document.getElementById("nombrepelicula").innerHTML="Consulta:";
+    document.getElementById("textcrawl").innerHTML="";
+
     //document.getElementById('list').removeChild();
     const parent = document.getElementById("list");
     //removeAllChildNodes(document.querySelector('#list'));
@@ -80,20 +81,18 @@ async function obtenerPelicula(URL){
     clear();
     
     const Pelicula = await obtenerDatosSWAPI(URL);
-    //clear();
     console.log(Pelicula);
     console.log("intentando escribir pelicula");
     objetivo = document.getElementById('nombrepelicula');
     texto = document.createTextNode(" "+Pelicula.title);
-    
-    //clear();
-    
     objetivo.appendChild(texto);
 
-    listContainer = document.createElement('div');
+    //listContainer = document.createElement('div');
+    listContainer = document.getElementById('list');
     listElement = document.createElement('ul');
-    document.getElementById('list').appendChild(listContainer);// test
+    //document.getElementById('list').appendChild(listContainer);// test
     listContainer.appendChild(listElement);
+
     /*
     listItem = document.createElement('li');
     listItem.innerHTML = Pelicula.opening_crawl;
@@ -224,9 +223,17 @@ async function obtenerPersonaje(URL){
     
     console.log(Pelicula);
     console.log("intentando escribir personaje");
+    objetivo = document.getElementById('nombrepelicula');
+    texto = document.createTextNode(" "+Pelicula.name);
+    objetivo.appendChild(texto);
+    /*
     listContainer = document.createElement('div');
     listElement = document.createElement('ul');
     document.getElementById('list').appendChild(listContainer);
+    listContainer.appendChild(listElement);*/
+    
+    listContainer = document.getElementById('list');
+    listElement = document.createElement('ul');
     listContainer.appendChild(listElement);
     
     listItem = document.createElement('li');
@@ -303,9 +310,13 @@ async function obtenerNave(URL){
     
     console.log(Pelicula);
     console.log("intentando escribir nave");
-    listContainer = document.createElement('div');
+    
+    objetivo = document.getElementById('nombrepelicula');
+    texto = document.createTextNode(" "+Pelicula.name);
+    objetivo.appendChild(texto);
+
+    listContainer = document.getElementById('list');
     listElement = document.createElement('ul');
-    document.getElementById('list').appendChild(listContainer);
     listContainer.appendChild(listElement);
     
     listItem = document.createElement('li');
@@ -352,9 +363,13 @@ async function obtenerVehiculo(URL){
     
     console.log(Pelicula);
     console.log("intentando escribir vehiculo");
-    listContainer = document.createElement('div');
+    
+    objetivo = document.getElementById('nombrepelicula');
+    texto = document.createTextNode(" "+Pelicula.name);
+    objetivo.appendChild(texto);
+    
+    listContainer = document.getElementById('list');
     listElement = document.createElement('ul');
-    document.getElementById('list').appendChild(listContainer);
     listContainer.appendChild(listElement);
     
     listItem = document.createElement('li');
@@ -401,9 +416,13 @@ async function obtenerPlaneta(URL){
     
     console.log(Pelicula);
     console.log("intentando escribir Planeta");
-    listContainer = document.createElement('div');
+    
+    objetivo = document.getElementById('nombrepelicula');
+    texto = document.createTextNode(" "+Pelicula.name);
+    objetivo.appendChild(texto);
+    
+    listContainer = document.getElementById('list');
     listElement = document.createElement('ul');
-    document.getElementById('list').appendChild(listContainer);
     listContainer.appendChild(listElement);
     
     listItem = document.createElement('li');
@@ -471,9 +490,13 @@ async function obtenerEspecie(URL){
     
     console.log(Pelicula);
     console.log("intentando escribir Especie");
-    listContainer = document.createElement('div');
+    
+    objetivo = document.getElementById('nombrepelicula');
+    texto = document.createTextNode(" "+Pelicula.name);
+    objetivo.appendChild(texto);
+    
+    listContainer = document.getElementById('list');
     listElement = document.createElement('ul');
-    document.getElementById('list').appendChild(listContainer);
     listContainer.appendChild(listElement);
     
     listItem = document.createElement('li');

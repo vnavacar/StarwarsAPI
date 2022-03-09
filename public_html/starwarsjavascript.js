@@ -93,7 +93,6 @@ async function obtenerPelicula(URL){
     listContainer = document.createElement('div');
     listElement = document.createElement('ul');
     document.getElementById('list').appendChild(listContainer);// test
-    //document.getElementById('list').appendChild(listContainer);
     listContainer.appendChild(listElement);
     /*
     listItem = document.createElement('li');
@@ -106,7 +105,12 @@ async function obtenerPelicula(URL){
     
     listItem = document.createElement('li');
     listItem.innerHTML = "Personajes:";
+    listItem.style.color = "orange";
+    listItem.style.textAlign = "center";
+    listItem.style.fontSize = "x-large";
+    listItem.style.fontWeight = "bold";
     listElement.appendChild(listItem);
+    
     
     for (let i = 0; i < Pelicula.characters.length; i++) {
         
@@ -122,6 +126,10 @@ async function obtenerPelicula(URL){
     
     listItem = document.createElement('li');
     listItem.innerHTML = "Planetas:";
+    listItem.style.color = "orange";
+    listItem.style.textAlign = "center";
+    listItem.style.fontSize = "x-large";
+    listItem.style.fontWeight = "bold";
     listElement.appendChild(listItem);
     
     for (let i = 0; i < Pelicula.planets.length; i++) {
@@ -138,6 +146,10 @@ async function obtenerPelicula(URL){
     
     listItem = document.createElement('li');
     listItem.innerHTML = "Naves:";
+    listItem.style.color = "orange";
+    listItem.style.textAlign = "center";
+    listItem.style.fontSize = "x-large";
+    listItem.style.fontWeight = "bold";
     listElement.appendChild(listItem);
     
     for (let i = 0; i < Pelicula.starships.length; i++) {
@@ -154,6 +166,10 @@ async function obtenerPelicula(URL){
     
     listItem = document.createElement('li');
     listItem.innerHTML = "Vehiculos:";
+    listItem.style.color = "orange";
+    listItem.style.textAlign = "center";
+    listItem.style.fontSize = "x-large";
+    listItem.style.fontWeight = "bold";
     listElement.appendChild(listItem);
     
     for (let i = 0; i < Pelicula.vehicles.length; i++) {
@@ -170,6 +186,10 @@ async function obtenerPelicula(URL){
     
     listItem = document.createElement('li');
     listItem.innerHTML = "Especies:";
+    listItem.style.color = "orange";
+    listItem.style.textAlign = "center";
+    listItem.style.fontSize = "x-large";
+    listItem.style.fontWeight = "bold";
     listElement.appendChild(listItem);
     
     for (let i = 0; i < Pelicula.species.length; i++) {
@@ -216,6 +236,10 @@ async function obtenerPersonaje(URL){
     
     listItem = document.createElement('li');
     listItem.innerHTML = "Peliculas:";
+    listItem.style.color = "orange";
+    listItem.style.textAlign = "center";
+    listItem.style.fontSize = "x-large";
+    listItem.style.fontWeight = "bold";
     listElement.appendChild(listItem);
     
     for (let i = 0; i < Pelicula.films.length; i++) {
@@ -232,6 +256,10 @@ async function obtenerPersonaje(URL){
     
     listItem = document.createElement('li');
     listItem.innerHTML = "vehiculos:";
+    listItem.style.color = "orange";
+    listItem.style.textAlign = "center";
+    listItem.style.fontSize = "x-large";
+    listItem.style.fontWeight = "bold";
     listElement.appendChild(listItem);
     
     for (let i = 0; i < Pelicula.vehicles.length; i++) {
@@ -248,6 +276,10 @@ async function obtenerPersonaje(URL){
     
     listItem = document.createElement('li');
     listItem.innerHTML = "Naves:";
+    listItem.style.color = "orange";
+    listItem.style.textAlign = "center";
+    listItem.style.fontSize = "x-large";
+    listItem.style.fontWeight = "bold";
     listElement.appendChild(listItem);
     
     for (let i = 0; i < Pelicula.starships.length; i++) {
@@ -291,6 +323,10 @@ async function obtenerNave(URL){
         
     listItem = document.createElement('li');
     listItem.innerHTML = "Peliculas:";
+    listItem.style.color = "orange";
+    listItem.style.textAlign = "center";
+    listItem.style.fontSize = "x-large";
+    listItem.style.fontWeight = "bold";
     listElement.appendChild(listItem);
     
     for (let i = 0; i < Pelicula.films.length; i++) {
@@ -336,6 +372,10 @@ async function obtenerVehiculo(URL){
         
     listItem = document.createElement('li');
     listItem.innerHTML = "Peliculas:";
+    listItem.style.color = "orange";
+    listItem.style.textAlign = "center";
+    listItem.style.fontSize = "x-large";
+    listItem.style.fontWeight = "bold";
     listElement.appendChild(listItem);
     
     for (let i = 0; i < Pelicula.films.length; i++) {
@@ -381,6 +421,10 @@ async function obtenerPlaneta(URL){
         
     listItem = document.createElement('li');
     listItem.innerHTML = "Peliculas:";
+    listItem.style.color = "orange";
+    listItem.style.textAlign = "center";
+    listItem.style.fontSize = "x-large";
+    listItem.style.fontWeight = "bold";
     listElement.appendChild(listItem);
     
     for (let i = 0; i < Pelicula.films.length; i++) {
@@ -397,6 +441,10 @@ async function obtenerPlaneta(URL){
     
     istItem = document.createElement('li');
     listItem.innerHTML = "Personajes:";
+    listItem.style.color = "orange";
+    listItem.style.textAlign = "center";
+    listItem.style.fontSize = "x-large";
+    listItem.style.fontWeight = "bold";
     listElement.appendChild(listItem);
     
     for (let i = 0; i < Pelicula.residents.length; i++) {
@@ -440,6 +488,10 @@ async function obtenerEspecie(URL){
         
     listItem = document.createElement('li');
     listItem.innerHTML = "Peliculas:";
+    listItem.style.color = "orange";
+    listItem.style.textAlign = "center";
+    listItem.style.fontSize = "x-large";
+    listItem.style.fontWeight = "bold";
     listElement.appendChild(listItem);
     
     for (let i = 0; i < Pelicula.films.length; i++) {
@@ -456,6 +508,10 @@ async function obtenerEspecie(URL){
     
     istItem = document.createElement('li');
     listItem.innerHTML = "Personajes:";
+    listItem.style.color = "orange";
+    listItem.style.textAlign = "center";
+    listItem.style.fontSize = "x-large";
+    listItem.style.fontWeight = "bold";
     listElement.appendChild(listItem);
     
     for (let i = 0; i < Pelicula.people.length; i++) {

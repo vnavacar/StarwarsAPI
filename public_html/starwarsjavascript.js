@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 
+var pagina = 0; // 0 para obtenerPelliculas, 1 obtenerpelicula, 2 personaje, 3 planeta, 4 vehiculo, 5 nave, 6 especie
+
 window.onload = async() => {
     
    // const abc = await obtenerDatosSWAPI("adb");
@@ -16,7 +18,7 @@ window.onload = async() => {
 
 async function obtenerPeliculas(){
     
-    
+    pagina = 0 ;
     const Peliculas = await obtenerDatosSWAPI("https://swapi.dev/api/films/"); 
     clear();
 
@@ -34,7 +36,9 @@ async function obtenerPeliculas(){
         
         listItem = document.createElement('li');
         listItem.innerHTML = Peliculas.results[i].title;
-        
+        if(pagina !== 0){
+            return ;
+        }
         listItem.addEventListener('click', function(){
               obtenerPelicula(Peliculas.results[i].url); //film_id no coincide con films/numero , usamos url entonces
           }); //funciona!
@@ -77,6 +81,7 @@ async function clear(){ //funciona?
 
 async function obtenerPelicula(URL){
     
+    pagina = 1;
      //var URL = "films/"+numero ;
     clear();
     
@@ -108,6 +113,9 @@ async function obtenerPelicula(URL){
         
         listItem = document.createElement('li');
         listItem.innerHTML = await obtenerName(Pelicula.characters[i]);
+        if(pagina !== 1){
+            return ;
+        }
         
         listItem.addEventListener('click', function(){
             obtenerPersonaje(Pelicula.characters[i]);
@@ -131,6 +139,9 @@ async function obtenerPelicula(URL){
         
         listItem = document.createElement('li');
         listItem.innerHTML = await obtenerName(Pelicula.planets[i]);
+        if(pagina !== 1){
+            return ;
+        }
         
         listItem.addEventListener('click', function(){
             obtenerPlaneta(Pelicula.planets[i]);
@@ -154,6 +165,9 @@ async function obtenerPelicula(URL){
         
         listItem = document.createElement('li');
         listItem.innerHTML = await obtenerName(Pelicula.starships[i]);
+        if(pagina !== 1){
+            return ;
+        }
         
         listItem.addEventListener('click', function(){
             obtenerNave(Pelicula.starships[i]);
@@ -177,6 +191,9 @@ async function obtenerPelicula(URL){
         
         listItem = document.createElement('li');
         listItem.innerHTML = await obtenerName(Pelicula.vehicles[i]);
+        if(pagina !== 1){
+            return ;
+        }
         
         listItem.addEventListener('click', function(){
             obtenerVehiculo(Pelicula.vehicles[i]);
@@ -200,6 +217,9 @@ async function obtenerPelicula(URL){
         
         listItem = document.createElement('li');
         listItem.innerHTML = await obtenerName(Pelicula.species[i]);
+        if(pagina !== 1){
+            return ;
+        }
         
         listItem.addEventListener('click', function(){
             obtenerEspecie(Pelicula.species[i]);
@@ -222,6 +242,8 @@ async function obtenerTituloPelicula(URL){
 }
 
 async function obtenerPersonaje(URL){
+    
+    pagina = 2;
     
     const Pelicula = await obtenerDatosSWAPI(URL);
     clear();
@@ -258,6 +280,9 @@ async function obtenerPersonaje(URL){
         
         listItem = document.createElement('li');
         listItem.innerHTML = await obtenerTituloPelicula(Pelicula.films[i]);
+        if(pagina !== 2){
+            return ;
+        }
         
         listItem.addEventListener('click', function(){
             obtenerPelicula(Pelicula.films[i]);
@@ -281,6 +306,9 @@ async function obtenerPersonaje(URL){
         
         listItem = document.createElement('li');
         listItem.innerHTML = await obtenerName(Pelicula.vehicles[i]);
+        if(pagina !== 2){
+            return ;
+        }
         
         listItem.addEventListener('click', function(){
             obtenerVehiculo(Pelicula.vehicles[i]);
@@ -304,6 +332,9 @@ async function obtenerPersonaje(URL){
         
         listItem = document.createElement('li');
         listItem.innerHTML = await obtenerName(Pelicula.starships[i]);
+        if(pagina !== 2){
+            return ;
+        }
         
         listItem.addEventListener('click', function(){
             obtenerNave(Pelicula.starships[i]);
@@ -315,6 +346,8 @@ async function obtenerPersonaje(URL){
 }//obtenerPersonaje
 
 async function obtenerNave(URL){
+    
+    pagina = 5;
     
     const Pelicula = await obtenerDatosSWAPI(URL);
     clear();
@@ -358,6 +391,9 @@ async function obtenerNave(URL){
         
         listItem = document.createElement('li');
         listItem.innerHTML = await obtenerTituloPelicula(Pelicula.films[i]);
+        if(pagina !== 5){
+            return ;
+        }
         
         listItem.addEventListener('click', function(){
             obtenerPelicula(Pelicula.films[i]);
@@ -371,6 +407,7 @@ async function obtenerNave(URL){
 }//obtenerNave
 
 async function obtenerVehiculo(URL){
+    pagina = 4;
     
     const Pelicula = await obtenerDatosSWAPI(URL);
     clear();
@@ -414,6 +451,9 @@ async function obtenerVehiculo(URL){
         
         listItem = document.createElement('li');
         listItem.innerHTML = await obtenerTituloPelicula(Pelicula.films[i]);
+        if(pagina !== 4){
+            return ;
+        }
         
         listItem.addEventListener('click', function(){
             obtenerPelicula(Pelicula.films[i]);
@@ -427,6 +467,8 @@ async function obtenerVehiculo(URL){
 }//obtenerVehiculo
 
 async function obtenerPlaneta(URL){
+    
+    pagina = 3;
     
     const Pelicula = await obtenerDatosSWAPI(URL);
     clear();
@@ -470,6 +512,9 @@ async function obtenerPlaneta(URL){
         
         listItem = document.createElement('li');
         listItem.innerHTML = await obtenerTituloPelicula(Pelicula.films[i]);
+        if(pagina !== 3){
+            return ;
+        }
         
         listItem.addEventListener('click', function(){
             obtenerPelicula(Pelicula.films[i]);
@@ -493,6 +538,9 @@ async function obtenerPlaneta(URL){
         
         listItem = document.createElement('li');
         listItem.innerHTML = await obtenerName(Pelicula.residents[i]);
+        if(pagina !== 3){
+            return ;
+        }
         
         listItem.addEventListener('click', function(){
             obtenerPersonaje(Pelicula.residents[i]);
@@ -507,6 +555,7 @@ async function obtenerPlaneta(URL){
 
 
 async function obtenerEspecie(URL){
+    pagina = 6;
     
     const Pelicula = await obtenerDatosSWAPI(URL);
     clear();
@@ -546,6 +595,9 @@ async function obtenerEspecie(URL){
         
         listItem = document.createElement('li');
         listItem.innerHTML = await obtenerTituloPelicula(Pelicula.films[i]);
+        if(pagina !== 6){
+            return ;
+        }
         
         listItem.addEventListener('click', function(){
             obtenerPelicula(Pelicula.films[i]);

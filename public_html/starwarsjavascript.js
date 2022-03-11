@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 
+var pagina = 0; // 0 para obtenerPelliculas, 1 obtenerpelicula, 2 personaje, 3 planeta, 4 vehiculo, 5 nave, 6 especie
+
 window.onload = async() => {
     
    // const abc = await obtenerDatosSWAPI("adb");
@@ -16,23 +18,27 @@ window.onload = async() => {
 
 async function obtenerPeliculas(){
     
-    
+    pagina = 0 ;
     const Peliculas = await obtenerDatosSWAPI("https://swapi.dev/api/films/"); 
     clear();
 
          console.log("intentando escribir");
          console.log(Peliculas);
 
-         listContainer = document.createElement('div');
+         listContainer = document.getElementById('list');
          listElement = document.createElement('ul');
-         document.getElementById('list').appendChild(listContainer);
          listContainer.appendChild(listElement);
+         //listElement = document.createElement('ul');
+         //document.getElementById('list').appendChild(listElement);
+          
           
     for (let i = 0; i < Peliculas.results.length; i++) {
         
         listItem = document.createElement('li');
         listItem.innerHTML = Peliculas.results[i].title;
-        
+        if(pagina !== 0){
+            return ;
+        }
         listItem.addEventListener('click', function(){
               obtenerPelicula(Peliculas.results[i].url); //film_id no coincide con films/numero , usamos url entonces
           }); //funciona!
@@ -41,16 +47,31 @@ async function obtenerPeliculas(){
         listElement.appendChild(listItem);
         
     }
+         listElement = '';
          console.log("Escritura completa?");
          
 }
 
-async function clear(){ //funciona
-    
-    
-    document.getElementById("list").innerHTML = "";
-    
+function removeAllChildNodes(parent) { // experimentando
+    console.log("Probando removechild");
 
+    while (parent.firstChild) {
+        parent.removeChild(parent.firstChild);
+    }
+}
+
+async function clear(){ //funciona?
+    
+    console.log("Limpiando lista");
+    //document.getElementById("list").innerHTML = "";
+    document.getElementById("nombrepelicula").innerHTML="Consulta:";
+    document.getElementById("textcrawl").innerHTML="";
+
+    //document.getElementById('list').removeChild();
+    const parent = document.getElementById("list");
+    //removeAllChildNodes(document.querySelector('#list'));
+    removeAllChildNodes(parent);
+    //document.getElementById("list").innerHTML = "";
     
 }
 
@@ -60,33 +81,41 @@ async function clear(){ //funciona
 
 async function obtenerPelicula(URL){
     
+    pagina = 1;
      //var URL = "films/"+numero ;
+    clear();
     
     const Pelicula = await obtenerDatosSWAPI(URL);
-    clear();
     console.log(Pelicula);
     console.log("intentando escribir pelicula");
-    listContainer = document.createElement('div');
+    objetivo = document.getElementById('nombrepelicula');
+    texto = document.createTextNode(" "+Pelicula.title);
+    objetivo.appendChild(texto);
+
+    listContainer = document.getElementById('list');
     listElement = document.createElement('ul');
-    document.getElementById('list').appendChild(listContainer);
     listContainer.appendChild(listElement);
+
+
+    document.getElementById('textcrawl').innerHTML = Pelicula.opening_crawl; // funciona
     
-    listItem = document.createElement('li');
-    listItem.innerHTML = "Titulo:"+Pelicula.title;
-    listElement.appendChild(listItem);
-    
-    listItem = document.createElement('li');
-    listItem.innerHTML = Pelicula.opening_crawl;
-    listElement.appendChild(listItem);
     
     listItem = document.createElement('li');
     listItem.innerHTML = "Personajes:";
+    listItem.style.color = "orange";
+    listItem.style.textAlign = "center";
+    listItem.style.fontSize = "x-large";
+    listItem.style.fontWeight = "bold";
     listElement.appendChild(listItem);
+    
     
     for (let i = 0; i < Pelicula.characters.length; i++) {
         
         listItem = document.createElement('li');
         listItem.innerHTML = await obtenerName(Pelicula.characters[i]);
+        if(pagina !== 1){
+            return ;
+        }
         
         listItem.addEventListener('click', function(){
             obtenerPersonaje(Pelicula.characters[i]);
@@ -95,14 +124,24 @@ async function obtenerPelicula(URL){
         listElement.appendChild(listItem);
     } // lista de personages
     
+    listElement = document.createElement('ul');
+    listContainer.appendChild(listElement);
+    
     listItem = document.createElement('li');
     listItem.innerHTML = "Planetas:";
+    listItem.style.color = "orange";
+    listItem.style.textAlign = "center";
+    listItem.style.fontSize = "x-large";
+    listItem.style.fontWeight = "bold";
     listElement.appendChild(listItem);
     
     for (let i = 0; i < Pelicula.planets.length; i++) {
         
         listItem = document.createElement('li');
         listItem.innerHTML = await obtenerName(Pelicula.planets[i]);
+        if(pagina !== 1){
+            return ;
+        }
         
         listItem.addEventListener('click', function(){
             obtenerPlaneta(Pelicula.planets[i]);
@@ -111,14 +150,24 @@ async function obtenerPelicula(URL){
         listElement.appendChild(listItem);
     } // lista de planetas
     
+    listElement = document.createElement('ul');
+    listContainer.appendChild(listElement);
+    
     listItem = document.createElement('li');
     listItem.innerHTML = "Naves:";
+    listItem.style.color = "orange";
+    listItem.style.textAlign = "center";
+    listItem.style.fontSize = "x-large";
+    listItem.style.fontWeight = "bold";
     listElement.appendChild(listItem);
     
     for (let i = 0; i < Pelicula.starships.length; i++) {
         
         listItem = document.createElement('li');
         listItem.innerHTML = await obtenerName(Pelicula.starships[i]);
+        if(pagina !== 1){
+            return ;
+        }
         
         listItem.addEventListener('click', function(){
             obtenerNave(Pelicula.starships[i]);
@@ -127,14 +176,24 @@ async function obtenerPelicula(URL){
         listElement.appendChild(listItem);
     } // lista de naves
     
+    listElement = document.createElement('ul');
+    listContainer.appendChild(listElement);
+    
     listItem = document.createElement('li');
     listItem.innerHTML = "Vehiculos:";
+    listItem.style.color = "orange";
+    listItem.style.textAlign = "center";
+    listItem.style.fontSize = "x-large";
+    listItem.style.fontWeight = "bold";
     listElement.appendChild(listItem);
     
     for (let i = 0; i < Pelicula.vehicles.length; i++) {
         
         listItem = document.createElement('li');
         listItem.innerHTML = await obtenerName(Pelicula.vehicles[i]);
+        if(pagina !== 1){
+            return ;
+        }
         
         listItem.addEventListener('click', function(){
             obtenerVehiculo(Pelicula.vehicles[i]);
@@ -143,14 +202,24 @@ async function obtenerPelicula(URL){
         listElement.appendChild(listItem);
     } // lista de vehiculos
     
+    listElement = document.createElement('ul');
+    listContainer.appendChild(listElement);
+    
     listItem = document.createElement('li');
     listItem.innerHTML = "Especies:";
+    listItem.style.color = "orange";
+    listItem.style.textAlign = "center";
+    listItem.style.fontSize = "x-large";
+    listItem.style.fontWeight = "bold";
     listElement.appendChild(listItem);
     
     for (let i = 0; i < Pelicula.species.length; i++) {
         
         listItem = document.createElement('li');
         listItem.innerHTML = await obtenerName(Pelicula.species[i]);
+        if(pagina !== 1){
+            return ;
+        }
         
         listItem.addEventListener('click', function(){
             obtenerEspecie(Pelicula.species[i]);
@@ -174,14 +243,24 @@ async function obtenerTituloPelicula(URL){
 
 async function obtenerPersonaje(URL){
     
+    pagina = 2;
+    
     const Pelicula = await obtenerDatosSWAPI(URL);
     clear();
     
     console.log(Pelicula);
     console.log("intentando escribir personaje");
+    objetivo = document.getElementById('nombrepelicula');
+    texto = document.createTextNode(" "+Pelicula.name);
+    objetivo.appendChild(texto);
+    /*
     listContainer = document.createElement('div');
     listElement = document.createElement('ul');
     document.getElementById('list').appendChild(listContainer);
+    listContainer.appendChild(listElement);*/
+    
+    listContainer = document.getElementById('list');
+    listElement = document.createElement('ul');
     listContainer.appendChild(listElement);
     
     listItem = document.createElement('li');
@@ -191,12 +270,19 @@ async function obtenerPersonaje(URL){
     
     listItem = document.createElement('li');
     listItem.innerHTML = "Peliculas:";
+    listItem.style.color = "orange";
+    listItem.style.textAlign = "center";
+    listItem.style.fontSize = "x-large";
+    listItem.style.fontWeight = "bold";
     listElement.appendChild(listItem);
     
     for (let i = 0; i < Pelicula.films.length; i++) {
         
         listItem = document.createElement('li');
         listItem.innerHTML = await obtenerTituloPelicula(Pelicula.films[i]);
+        if(pagina !== 2){
+            return ;
+        }
         
         listItem.addEventListener('click', function(){
             obtenerPelicula(Pelicula.films[i]);
@@ -205,14 +291,24 @@ async function obtenerPersonaje(URL){
         listElement.appendChild(listItem);
     } // lista de peliculas
     
+    listElement = document.createElement('ul');
+    listContainer.appendChild(listElement);
+    
     listItem = document.createElement('li');
     listItem.innerHTML = "vehiculos:";
+    listItem.style.color = "orange";
+    listItem.style.textAlign = "center";
+    listItem.style.fontSize = "x-large";
+    listItem.style.fontWeight = "bold";
     listElement.appendChild(listItem);
     
     for (let i = 0; i < Pelicula.vehicles.length; i++) {
         
         listItem = document.createElement('li');
         listItem.innerHTML = await obtenerName(Pelicula.vehicles[i]);
+        if(pagina !== 2){
+            return ;
+        }
         
         listItem.addEventListener('click', function(){
             obtenerVehiculo(Pelicula.vehicles[i]);
@@ -221,14 +317,24 @@ async function obtenerPersonaje(URL){
         listElement.appendChild(listItem);
     } // lista de vehiculos
     
+    listElement = document.createElement('ul');
+    listContainer.appendChild(listElement);
+    
     listItem = document.createElement('li');
     listItem.innerHTML = "Naves:";
+    listItem.style.color = "orange";
+    listItem.style.textAlign = "center";
+    listItem.style.fontSize = "x-large";
+    listItem.style.fontWeight = "bold";
     listElement.appendChild(listItem);
     
     for (let i = 0; i < Pelicula.starships.length; i++) {
         
         listItem = document.createElement('li');
         listItem.innerHTML = await obtenerName(Pelicula.starships[i]);
+        if(pagina !== 2){
+            return ;
+        }
         
         listItem.addEventListener('click', function(){
             obtenerNave(Pelicula.starships[i]);
@@ -241,14 +347,20 @@ async function obtenerPersonaje(URL){
 
 async function obtenerNave(URL){
     
+    pagina = 5;
+    
     const Pelicula = await obtenerDatosSWAPI(URL);
     clear();
     
     console.log(Pelicula);
     console.log("intentando escribir nave");
-    listContainer = document.createElement('div');
+    
+    objetivo = document.getElementById('nombrepelicula');
+    texto = document.createTextNode(" "+Pelicula.name);
+    objetivo.appendChild(texto);
+
+    listContainer = document.getElementById('list');
     listElement = document.createElement('ul');
-    document.getElementById('list').appendChild(listContainer);
     listContainer.appendChild(listElement);
     
     listItem = document.createElement('li');
@@ -263,15 +375,25 @@ async function obtenerNave(URL){
     listItem = document.createElement('li');
     listItem.innerHTML = "Fabricante:"+Pelicula.manufacturer;
     listElement.appendChild(listItem);
+    
+    listElement = document.createElement('ul');
+    listContainer.appendChild(listElement);
         
     listItem = document.createElement('li');
     listItem.innerHTML = "Peliculas:";
+    listItem.style.color = "orange";
+    listItem.style.textAlign = "center";
+    listItem.style.fontSize = "x-large";
+    listItem.style.fontWeight = "bold";
     listElement.appendChild(listItem);
     
     for (let i = 0; i < Pelicula.films.length; i++) {
         
         listItem = document.createElement('li');
         listItem.innerHTML = await obtenerTituloPelicula(Pelicula.films[i]);
+        if(pagina !== 5){
+            return ;
+        }
         
         listItem.addEventListener('click', function(){
             obtenerPelicula(Pelicula.films[i]);
@@ -285,15 +407,20 @@ async function obtenerNave(URL){
 }//obtenerNave
 
 async function obtenerVehiculo(URL){
+    pagina = 4;
     
     const Pelicula = await obtenerDatosSWAPI(URL);
     clear();
     
     console.log(Pelicula);
     console.log("intentando escribir vehiculo");
-    listContainer = document.createElement('div');
+    
+    objetivo = document.getElementById('nombrepelicula');
+    texto = document.createTextNode(" "+Pelicula.name);
+    objetivo.appendChild(texto);
+    
+    listContainer = document.getElementById('list');
     listElement = document.createElement('ul');
-    document.getElementById('list').appendChild(listContainer);
     listContainer.appendChild(listElement);
     
     listItem = document.createElement('li');
@@ -308,15 +435,25 @@ async function obtenerVehiculo(URL){
     listItem = document.createElement('li');
     listItem.innerHTML = "Fabricante:"+Pelicula.manufacturer;
     listElement.appendChild(listItem);
+    
+    listElement = document.createElement('ul');
+    listContainer.appendChild(listElement);
         
     listItem = document.createElement('li');
     listItem.innerHTML = "Peliculas:";
+    listItem.style.color = "orange";
+    listItem.style.textAlign = "center";
+    listItem.style.fontSize = "x-large";
+    listItem.style.fontWeight = "bold";
     listElement.appendChild(listItem);
     
     for (let i = 0; i < Pelicula.films.length; i++) {
         
         listItem = document.createElement('li');
         listItem.innerHTML = await obtenerTituloPelicula(Pelicula.films[i]);
+        if(pagina !== 4){
+            return ;
+        }
         
         listItem.addEventListener('click', function(){
             obtenerPelicula(Pelicula.films[i]);
@@ -331,14 +468,20 @@ async function obtenerVehiculo(URL){
 
 async function obtenerPlaneta(URL){
     
+    pagina = 3;
+    
     const Pelicula = await obtenerDatosSWAPI(URL);
     clear();
     
     console.log(Pelicula);
     console.log("intentando escribir Planeta");
-    listContainer = document.createElement('div');
+    
+    objetivo = document.getElementById('nombrepelicula');
+    texto = document.createTextNode(" "+Pelicula.name);
+    objetivo.appendChild(texto);
+    
+    listContainer = document.getElementById('list');
     listElement = document.createElement('ul');
-    document.getElementById('list').appendChild(listContainer);
     listContainer.appendChild(listElement);
     
     listItem = document.createElement('li');
@@ -353,15 +496,25 @@ async function obtenerPlaneta(URL){
     listItem = document.createElement('li');
     listItem.innerHTML = "Terreno:"+Pelicula.terrain;
     listElement.appendChild(listItem);
+    
+    listElement = document.createElement('ul');
+    listContainer.appendChild(listElement);
         
     listItem = document.createElement('li');
     listItem.innerHTML = "Peliculas:";
+    listItem.style.color = "orange";
+    listItem.style.textAlign = "center";
+    listItem.style.fontSize = "x-large";
+    listItem.style.fontWeight = "bold";
     listElement.appendChild(listItem);
     
     for (let i = 0; i < Pelicula.films.length; i++) {
         
         listItem = document.createElement('li');
         listItem.innerHTML = await obtenerTituloPelicula(Pelicula.films[i]);
+        if(pagina !== 3){
+            return ;
+        }
         
         listItem.addEventListener('click', function(){
             obtenerPelicula(Pelicula.films[i]);
@@ -370,14 +523,24 @@ async function obtenerPlaneta(URL){
         listElement.appendChild(listItem);
     } // lista de peliculas
     
+    listElement = document.createElement('ul');
+    listContainer.appendChild(listElement);
+    
     istItem = document.createElement('li');
     listItem.innerHTML = "Personajes:";
+    listItem.style.color = "orange";
+    listItem.style.textAlign = "center";
+    listItem.style.fontSize = "x-large";
+    listItem.style.fontWeight = "bold";
     listElement.appendChild(listItem);
     
     for (let i = 0; i < Pelicula.residents.length; i++) {
         
         listItem = document.createElement('li');
         listItem.innerHTML = await obtenerName(Pelicula.residents[i]);
+        if(pagina !== 3){
+            return ;
+        }
         
         listItem.addEventListener('click', function(){
             obtenerPersonaje(Pelicula.residents[i]);
@@ -392,15 +555,20 @@ async function obtenerPlaneta(URL){
 
 
 async function obtenerEspecie(URL){
+    pagina = 6;
     
     const Pelicula = await obtenerDatosSWAPI(URL);
     clear();
     
     console.log(Pelicula);
     console.log("intentando escribir Especie");
-    listContainer = document.createElement('div');
+    
+    objetivo = document.getElementById('nombrepelicula');
+    texto = document.createTextNode(" "+Pelicula.name);
+    objetivo.appendChild(texto);
+    
+    listContainer = document.getElementById('list');
     listElement = document.createElement('ul');
-    document.getElementById('list').appendChild(listContainer);
     listContainer.appendChild(listElement);
     
     listItem = document.createElement('li');
@@ -412,15 +580,24 @@ async function obtenerEspecie(URL){
     listItem.innerHTML = "Designacion:"+Pelicula.designation;
     listElement.appendChild(listItem);
     
+    listElement = document.createElement('ul');
+    listContainer.appendChild(listElement);
         
     listItem = document.createElement('li');
     listItem.innerHTML = "Peliculas:";
+    listItem.style.color = "orange";
+    listItem.style.textAlign = "center";
+    listItem.style.fontSize = "x-large";
+    listItem.style.fontWeight = "bold";
     listElement.appendChild(listItem);
     
     for (let i = 0; i < Pelicula.films.length; i++) {
         
         listItem = document.createElement('li');
         listItem.innerHTML = await obtenerTituloPelicula(Pelicula.films[i]);
+        if(pagina !== 6){
+            return ;
+        }
         
         listItem.addEventListener('click', function(){
             obtenerPelicula(Pelicula.films[i]);
@@ -429,8 +606,15 @@ async function obtenerEspecie(URL){
         listElement.appendChild(listItem);
     } // lista de peliculas
     
+    listElement = document.createElement('ul');
+    listContainer.appendChild(listElement);
+    
     istItem = document.createElement('li');
     listItem.innerHTML = "Personajes:";
+    listItem.style.color = "orange";
+    listItem.style.textAlign = "center";
+    listItem.style.fontSize = "x-large";
+    listItem.style.fontWeight = "bold";
     listElement.appendChild(listItem);
     
     for (let i = 0; i < Pelicula.people.length; i++) {
@@ -464,4 +648,4 @@ function obtenerDatosSWAPI(url){
     return fetch(url)
             .then (r => r.json());
      
-};
+}
